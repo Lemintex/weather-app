@@ -4,6 +4,8 @@ import Navbar from "./components/Navbar";
 import axios from "axios";
 import { useQuery } from "react-query";
 import Container from "./components/Container";
+import { convertKelvinToCelsius } from "./utils/convertUnits";
+import DayForecast from "./components/DayForecast";
 
 type WeatherInfo = {
   cod: string;
@@ -67,7 +69,7 @@ export default function Home() {
    return data;
   }
   );
-  console.log(data?.city.population);
+  console.log(data);
 
   if (isLoading)
   return (
@@ -83,7 +85,6 @@ export default function Home() {
       <main className=" max-w-full mx-auto flex flex-col gap-9 px-4 pb-10 pt-4 bg-blue-700">
         {/* Today */}
         <section>
-          <div>
             <div className="flex gap-1 text-2xl items-end">
               <p className="text-4xl font-bold">Today</p>
               <p className="text-lg font-bold">Date</p>
@@ -101,24 +102,17 @@ export default function Home() {
                   {data?.list.map((item, n) => 
                     <div key={n} className="flex flex-col justify-between gap-2 items-center">
                       <p>{item.dt_txt}</p>
-                      <p>{item.main.temp}</p>
+                      <p>{convertKelvinToCelsius(item.main.temp)} C</p>
                     </div>
                   )}
                 </div>
               </div>
-              <div>
-                <Image
-                  src="/01d.png"
-                  alt="Weather Icon"
-                  width={200}
-                  height={200}
-                />
-              </div>
             </Container>
-          </div>
+            <DayForecast />
         </section>
-        {/*Next 5 days */}
-        <div></div>
+        {/*Next 7 days */}
+        <section>
+          </section>
         </main>
     </div>
   );
