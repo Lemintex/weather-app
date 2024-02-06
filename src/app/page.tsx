@@ -6,6 +6,7 @@ import { useQuery } from "react-query";
 import Container from "./components/Container";
 import { convertKelvinToCelsius } from "./utils/convertUnits";
 import DayForecast from "./components/DayForecast";
+import FutureDayForecast from "./components/FutureDayForecast";
 
 type WeatherInfo = {
   cod: string;
@@ -71,14 +72,23 @@ export default function Home() {
   );
   console.log(data);
 
-  if (isLoading)
-  return (
-   <div className="flex items-center min-h-screen justify-center text-4xl">
-     <p className="animate-bounce">
-       Loading...
-     </p>
-   </div>
-  );
+  const uniqueDates = data?.list.reduce((acc, item) => {
+    const date = new Date(item.dt_txt).toDateString();
+    if (!acc.includes(date)) {
+      acc.push(date);
+    }
+    return acc;
+  }
+  , [] as string[]);
+  console.log(uniqueDates);
+//  if (isLoading)
+//  return (
+//   <div className="flex items-center min-h-screen justify-center text-4xl">
+//     <p className="animate-bounce">
+//       Loading...
+//     </p>
+//   </div>
+//  );
   return (
     <div className="flex flex-col gap-4 bg-gray-100 min-h-screen">
       <Navbar />
@@ -89,7 +99,7 @@ export default function Home() {
               <p className="text-4xl font-bold">Today</p>
               <p className="text-lg font-bold">Date</p>
             </div>
-            <Container className="gap-10 px-5 items-center">
+            <Container className="gap-10 px-5 my-3 items-center">
               <div className="flex flex-col px-4">
                 {/* <div>
                   <p className="text-4xl font-bold">Temperature</p>
@@ -110,9 +120,17 @@ export default function Home() {
             </Container>
             <DayForecast />
         </section>
-        {/*Next 7 days */}
-        <section>
-          </section>
+        {/*Next 5 days */}
+        <section className="bg-green-300">
+          <p className="text-4xl font-bold">Next 5 days</p>
+          <div className="flex gap-10 overflow-x-auto w-full justify-between p-3">
+            <p className="text-4xl font-bold">Day</p>
+            <p className="text-2xl">Weather</p>
+            </div>
+            {uniqueDates?.map((date, n) => (
+              <FutureDayForecast info="a" icon="b" value="c"/>
+            ))}
+        </section>
         </main>
     </div>
   );
