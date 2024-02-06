@@ -62,6 +62,13 @@ export interface SingleWeatherDetailProps {
 
 function SingleWeatherDetail(props: SingleWeatherDetailProps) {
   return (
-    <div className='flex flex-col justify-between px-5 items-center'>TEST</div>
+    <div className='flex flex-col justify-between px-5 items-center'>
+      <p>
+        {props.info}
+      </p>
+      <p>
+        {props.value}
+      </p>
+    </div>
   )
 }
