@@ -81,6 +81,18 @@ export default function Home() {
   }
   , [] as string[]);
   console.log(uniqueDates);
+
+  const dataForEachDate = uniqueDates?.map((date) => {
+    return data?.list.filter((item) => {
+      const itemDate = new Date(item.dt_txt).toDateString();
+      const itemTime = new Date(item.dt_txt).toLocaleTimeString();
+      console.log("ItemTime", itemTime);
+      return itemDate === date && itemTime === "12:00:00 PM";
+    }
+    );
+  }
+  );
+  console.log(dataForEachDate);
 //  if (isLoading)
 //  return (
 //   <div className="flex items-center min-h-screen justify-center text-4xl">
@@ -127,7 +139,7 @@ export default function Home() {
             <p className="text-4xl font-bold">Day</p>
             <p className="text-2xl">Weather</p>
             </div>
-            {uniqueDates?.map((date, n) => (
+            {dataForEachDate?.map((date, n) => (
               <FutureDayForecast info="a" icon="b" value="c"/>
             ))}
         </section>
