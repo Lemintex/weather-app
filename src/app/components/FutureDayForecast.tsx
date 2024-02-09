@@ -7,37 +7,37 @@ interface FutureDayForecastProps extends WeatherDetailProps {
 
 export default function FutureDayForecast(props: FutureDayForecastProps) {
   return (
-    <Container className="flex w-full bg-red-300 my-3">
+    <Container className="flex w-full h-64 bg-red-300 my-3">
       <div className='w-fit mx-5'>
       test
       </div>
       {/*right bit*/}
-      <section className='flex overflow-x-auto w-screen justify-between'>
-      <SingleWeatherDetail
-          info='Visibility'
-          icon={<i className='fas fa-eye'></i>}
-          value={`m`}
-        />
+      <section className='flex w-full'>
         <SingleWeatherDetail
-          info='Visibility'
-          icon={<i className='fas fa-eye'></i>}
-          value={`m`}
-        />
-        <SingleWeatherDetail
-          info='Visibility'
-          icon={<i className='fas fa-eye'></i>}
-          value={`m`}
-        />
-        <SingleWeatherDetail
-          info='Visibility'
-          icon={<i className='fas fa-eye'></i>}
-          value={`m`}
-        />
-        <SingleWeatherDetail
-          info='Visibility'
-          icon={<i className='fas fa-eye'></i>}
-          value={`m`}
-        />
+            info='Visibility'
+            icon={<i className='fas fa-eye'></i>}
+            value={`m`}
+          />
+          <SingleWeatherDetail
+            info='Visibility'
+            icon={<i className='fas fa-eye'></i>}
+            value={`m`}
+          />
+          <SingleWeatherDetail
+            info='Visibility'
+            icon={<i className='fas fa-eye'></i>}
+            value={`m`}
+          />
+          <SingleWeatherDetail
+            info='Visibility'
+            icon={<i className='fas fa-eye'></i>}
+            value={`m`}
+          />
+          <SingleWeatherDetail
+            info='Visibility'
+            icon={<i className='fas fa-eye'></i>}
+            value={`m`}
+          />
       </section>
     </Container>
   )
@@ -45,13 +45,14 @@ export default function FutureDayForecast(props: FutureDayForecastProps) {
 
 function SingleWeatherDetail(props: SingleWeatherDetailProps) {
   return (
-    <div className='flex flex-col justify-between px-5 items-center w-fit bg-gray-200'>
+    <div className='flex flex-col justify-between items-center w-full h-full bg-gray-200 border border-black'>
       <p>
         {props.info}
       </p>
       <p>
         {props.value}
       </p>
+      <p>R</p>
     </div>
   )
 }
