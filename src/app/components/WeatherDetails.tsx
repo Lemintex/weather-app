@@ -1,14 +1,14 @@
 import React from 'react'
 
 export interface WeatherDetailProps {
-  visibility: number;
-  humidity: number;
+  visibility: number; // 10000
+  humidity: number; // 84
   wind: {
-    speed: number;
-    deg: number;
+    speed: number; // 8.62
+    deg: number; // 349
   };
-  sunrise: number;
-  sunset: number;
+  sunrise: number; // 1661834187
+  sunset: number; // 1661882248
 }
 
 export default function WeatherDetails(props: WeatherDetailProps) {
