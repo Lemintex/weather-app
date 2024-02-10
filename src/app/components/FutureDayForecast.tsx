@@ -7,8 +7,8 @@ interface FutureDayForecastProps extends WeatherDetailProps {
 
 export default function FutureDayForecast(props: FutureDayForecastProps) {
   return (
-    <Container className="flex w-full h-64 bg-red-300 my-3">
-      <div className='w-fit mx-5'>
+    <Container className="flex w-full h-64 bg-red-100 my-1">
+      <div className='w-fit mx-5 border border-black'>
       test
       </div>
       {/*right bit*/}
@@ -19,22 +19,22 @@ export default function FutureDayForecast(props: FutureDayForecastProps) {
             value={`m`}
           />
           <SingleWeatherDetail
-            info='Visibility'
+            info='Humidity'
+            icon={<i className='fas fa-eye'></i>}
+            value={`%`}
+          />
+          <SingleWeatherDetail
+            info='Wind'
+            icon={<i className='fas fa-eye'></i>}
+            value={`m/s`}
+          />
+          <SingleWeatherDetail
+            info='Sunrise'
             icon={<i className='fas fa-eye'></i>}
             value={`m`}
           />
           <SingleWeatherDetail
-            info='Visibility'
-            icon={<i className='fas fa-eye'></i>}
-            value={`m`}
-          />
-          <SingleWeatherDetail
-            info='Visibility'
-            icon={<i className='fas fa-eye'></i>}
-            value={`m`}
-          />
-          <SingleWeatherDetail
-            info='Visibility'
+            info='Sunset'
             icon={<i className='fas fa-eye'></i>}
             value={`m`}
           />
@@ -52,7 +52,6 @@ function SingleWeatherDetail(props: SingleWeatherDetailProps) {
       <p>
         {props.value}
       </p>
-      <p>R</p>
     </div>
   )
 }
