@@ -8,8 +8,13 @@ interface FutureDayForecastProps extends WeatherDetailProps {
 export default function FutureDayForecast(props: FutureDayForecastProps) {
   return (
     <Container className="flex w-full h-64 bg-red-100 my-1">
-      <div className='w-fit mx-5 border border-black'>
-      test
+      <div className='w-fit border border-black'>
+        <p className='text-2xl font-bold'>Day</p>
+        <p className='text-lg'>Date</p>
+      </div>
+      <div className='border border-cyan-600 px-5'>
+        <p className='text-2xl font-bold'>Weather</p>
+        <p className='text-lg'>Description</p>
       </div>
       {/*right bit*/}
       <section className='flex w-full'>
