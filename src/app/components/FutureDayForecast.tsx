@@ -1,7 +1,7 @@
 import React from 'react'
 import { SingleWeatherDetailProps, WeatherDetailProps } from './WeatherDetails'
 import Container from './Container'
-
+import { TbEye, TbDroplet, TbWind, TbSunrise, TbSunset } from "react-icons/tb";
 interface FutureDayForecastProps extends WeatherDetailProps {
 }
 
@@ -20,40 +20,43 @@ export default function FutureDayForecast(props: FutureDayForecastProps) {
       <section className='flex w-full'>
         <SingleWeatherDetail
             info='Visibility'
-            icon={<i className='fas fa-eye'></i>}
+            icon={<TbEye />}
             value={`m`}
           />
           <SingleWeatherDetail
             info='Humidity'
-            icon={<i className='fas fa-eye'></i>}
+            icon={<TbDroplet />}
             value={`%`}
           />
           <SingleWeatherDetail
             info='Wind'
-            icon={<i className='fas fa-eye'></i>}
+            icon={<TbWind />}
             value={`m/s`}
           />
           <SingleWeatherDetail
             info='Sunrise'
-            icon={<i className='fas fa-eye'></i>}
+            icon={<TbSunrise />}
             value={`m`}
           />
           <SingleWeatherDetail
             info='Sunset'
-            icon={<i className='fas fa-eye'></i>}
+            icon={<TbSunset />}
             value={`m`}
           />
       </section>
     </Container>
   )
+  
 }
-
 function SingleWeatherDetail(props: SingleWeatherDetailProps) {
   return (
-    <div className='flex flex-col justify-between items-center w-full h-full bg-gray-200 border border-black'>
+    <div className='flex flex-col justify-between items-center gap-2 w-full h-full bg-gray-200 border border-black'>
       <p>
         {props.info}
       </p>
+      <div className='text-6xl items-center'>
+        {props.icon}
+      </div>
       <p>
         {props.value}
       </p>
