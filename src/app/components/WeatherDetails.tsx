@@ -1,4 +1,5 @@
 import React from 'react'
+import { TbEye, TbDroplet, TbWind, TbSunrise, TbSunset } from "react-icons/tb";
 
 export interface WeatherDetailProps {
   visibility: number; // 10000
@@ -23,31 +24,31 @@ export default function WeatherDetails(props: WeatherDetailProps) {
     <div className='flex justify-between'>
       <SingleWeatherDetail
         info='Visibility'
-        icon={<i className='fas fa-eye'></i>}
+        icon={<TbEye />}
         value={`${props.visibility} m`}
       />
 
       <SingleWeatherDetail
         info='Humidity'
-        icon={<i className='fas fa-tint'></i>}
+        icon={<TbDroplet />}
         value={`${props.humidity}%`}
       />
 
       <SingleWeatherDetail
         info='Wind'
-        icon={<i className='fas fa-wind'></i>}
+        icon={<TbWind />}
         value={`${props.wind.speed} m/s`}
       />
 
       <SingleWeatherDetail  
         info='Sunrise'
-        icon={<i className='fas fa-sun'></i>}
+        icon={<TbSunrise />}
         value={new Date(props.sunrise * 1000).toLocaleTimeString()}
       />
 
       <SingleWeatherDetail
         info='Sunset'
-        icon={<i className='fas fa-moon'></i>}
+        icon={<TbSunset />}
         value={new Date(props.sunset * 1000).toLocaleTimeString()}
       />
     </div>
@@ -62,10 +63,13 @@ export interface SingleWeatherDetailProps {
 
 function SingleWeatherDetail(props: SingleWeatherDetailProps) {
   return (
-    <div className='flex flex-col justify-between px-5 items-center'>
+    <div className='flex flex-col justify-between items-center gap-2 w-full h-full bg-gray-200 border border-black'>
       <p>
         {props.info}
       </p>
+      <div className='text-6xl items-center'>
+        {props.icon}
+      </div>
       <p>
         {props.value}
       </p>
