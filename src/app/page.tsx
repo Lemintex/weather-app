@@ -7,6 +7,7 @@ import Container from "./components/Container";
 import { convertKelvinToCelsius } from "./utils/convertUnits";
 import DayForecast from "./components/DayForecast";
 import FutureDayForecast from "./components/FutureDayForecast";
+import { log } from "console";
 
 type WeatherInfo = {
   cod: string;
@@ -86,13 +87,27 @@ export default function Home() {
     return data?.list.filter((item) => {
       const itemDate = new Date(item.dt_txt).toDateString();
       const itemTime = new Date(item.dt_txt).toLocaleTimeString();
+      console.log("ItemDate", itemDate);
       console.log("ItemTime", itemTime);
-      return itemDate === date && itemTime === "12:00:00 PM";
-    }
-    );
-  }
-  );
+      let midday = new Date("12:00:00 PM")
+      // only return the data for 12:00:00 PM for each date
+      if (itemDate === date && itemTime === midday.toLocaleTimeString()) {
+        return item;
+      }
+    });
+  });
   console.log(dataForEachDate);
+
+  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  let currentDate = '';
+  if (data && data.list[0]) {
+    currentDate = new Date(data.list[0].dt_txt).toDateString();
+  }
+  const date = new Date(currentDate);
+  const dayIndex = date.getDay();
+  const day = days[dayIndex];
+  console.log("Date", date); 
+  console.log("Day", day);
 //  if (isLoading)
 //  return (
 //   <div className="flex items-center min-h-screen justify-center text-4xl">
@@ -102,9 +117,9 @@ export default function Home() {
 //   </div>
 //  );
   return (
-    <div className="flex flex-col gap-4 bg-gray-100 min-h-screen">
+    <div className="flex flex-col gap-4 min-h-screen">
       <Navbar />
-      <main className=" max-w-full mx-auto flex flex-col gap-9 px-4 pb-10 pt-4 bg-blue-700">
+      <main className=" max-w-full mx-auto flex flex-col gap-9 px-4 pb-10 pt-4 bg-gray-100">
         {/* Today */}
         <section>
             <div className="flex gap-1 text-2xl items-end">
@@ -139,9 +154,11 @@ export default function Home() {
             <p className="text-4xl font-bold">Day</p>
             <p className="text-2xl">Weather</p>
             </div>
-            {dataForEachDate?.map((date, n) => (
-              <FutureDayForecast info="a" icon="b" value="c"/>
-            ))}
+              <FutureDayForecast />
+              <FutureDayForecast />
+              <FutureDayForecast />
+              <FutureDayForecast />
+              <FutureDayForecast />
         </section>
         </main>
     </div>
