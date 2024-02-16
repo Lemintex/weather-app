@@ -104,7 +104,7 @@ export default function Home() {
     currentDate = new Date(data.list[0].dt_txt).toDateString();
   }
   const todayDate = new Date(currentDate);
-  const today = todayDate.toDateString();
+  const today = todayDate.toLocaleDateString();
   const dayIndex = todayDate.getDay();
   const day = days[dayIndex];
   console.log("Date", todayDate); 
