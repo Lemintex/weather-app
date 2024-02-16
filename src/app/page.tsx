@@ -103,10 +103,11 @@ export default function Home() {
   if (data && data.list[0]) {
     currentDate = new Date(data.list[0].dt_txt).toDateString();
   }
-  const date = new Date(currentDate);
-  const dayIndex = date.getDay();
+  const todayDate = new Date(currentDate);
+  const today = todayDate.toDateString();
+  const dayIndex = todayDate.getDay();
   const day = days[dayIndex];
-  console.log("Date", date); 
+  console.log("Date", todayDate); 
   console.log("Day", day);
 //  if (isLoading)
 //  return (
@@ -123,8 +124,8 @@ export default function Home() {
         {/* Today */}
         <section>
             <div className="flex gap-1 text-2xl items-end">
-              <p className="text-4xl font-bold">Today</p>
-              <p className="text-lg font-bold">Date</p>
+              <p className="text-4xl font-bold">{day}</p>
+              <p className="text-lg font-bold">{today}</p>
             </div>
             <Container className="gap-10 px-5 my-3 items-center">
               <div className="flex flex-col px-4">
