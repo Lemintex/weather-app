@@ -21,27 +21,27 @@ export default function FutureDayForecast(props: FutureDayForecastProps) {
         <SingleWeatherDetail
             info='Visibility'
             icon={<TbEye />}
-            value={`m`}
+            value={`${props.visibility} m`}
           />
           <SingleWeatherDetail
             info='Humidity'
             icon={<TbDroplet />}
-            value={`%`}
+            value={`${props.humidity} %`}
           />
           <SingleWeatherDetail
             info='Wind'
             icon={<TbWind />}
-            value={`m/s`}
+            value={`${props.wind.speed} m/s`}
           />
           <SingleWeatherDetail
             info='Sunrise'
             icon={<TbSunrise />}
-            value={`m`}
+            value={`${props.sunrise} m`}
           />
           <SingleWeatherDetail
             info='Sunset'
             icon={<TbSunset />}
-            value={`m`}
+            value={`${props.sunset} m`}
           />
       </section>
     </Container>
