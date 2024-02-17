@@ -146,7 +146,7 @@ export default function Home() {
                 </div>
               </div>
             </Container>
-            <DayForecast />
+            <DayForecast visibility={data?.list[0].visibility ?? 0} humidity={data?.list[0].main.humidity ?? 0} wind={{speed: data?.list[0].wind.speed ?? 0, deg: data?.list[0].wind.deg ?? 0}} sunrise={data?.city.sunrise ?? 0} sunset={data?.city.sunset ?? 0}/>
         </section>
         {/*Next 5 days */}
         <section className="bg-green-300">

@@ -1,8 +1,8 @@
 import React from 'react'
 import Container from './Container'
-import WeatherDetails from './WeatherDetails';
+import WeatherDetails, { WeatherDetailProps } from './WeatherDetails';
 
-export default function DayForecast() {
+export default function DayForecast(props: WeatherDetailProps) {
   return (
   <div className='flex gap-4'>
     {/* Sky */}
@@ -12,7 +12,7 @@ export default function DayForecast() {
     </Container>
     {/* Weather */}
     <Container className='flex overflow-x-auto w-screen flex-col bg-yellow-400'>
-      <WeatherDetails visibility={1} humidity={2} wind={{speed: 3, deg: 4}} sunrise={5} sunset={6} />
+      <WeatherDetails visibility={props.visibility} humidity={props.humidity} wind={{speed: props.wind.speed, deg: 4}} sunrise={props.sunrise} sunset={props.sunset} />
     </Container>
   </div>
   );
