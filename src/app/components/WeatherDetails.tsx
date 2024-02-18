@@ -25,31 +25,31 @@ export default function WeatherDetails(props: WeatherDetailProps) {
       <SingleWeatherDetail
         info='Visibility'
         icon={<TbEye />}
-        value={`${props.visibility} m`}
+        value={`${visibility} m`}
       />
 
       <SingleWeatherDetail
         info='Humidity'
         icon={<TbDroplet />}
-        value={`${props.humidity}%`}
+        value={`${humidity}%`}
       />
 
       <SingleWeatherDetail
         info='Wind'
         icon={<TbWind />}
-        value={`${props.wind.speed} m/s`}
+        value={`${wind.speed} m/s`}
       />
 
       <SingleWeatherDetail  
         info='Sunrise'
         icon={<TbSunrise />}
-        value={new Date(props.sunrise * 1000).toLocaleTimeString()}
+        value={new Date(sunrise * 1000).toLocaleTimeString()}
       />
 
       <SingleWeatherDetail
         info='Sunset'
         icon={<TbSunset />}
-        value={new Date(props.sunset * 1000).toLocaleTimeString()}
+        value={new Date(sunset * 1000).toLocaleTimeString()}
       />
     </div>
   )
