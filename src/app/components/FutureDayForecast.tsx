@@ -1,65 +1,39 @@
 import React from 'react'
-import { SingleWeatherDetailProps, WeatherDetailProps } from './WeatherDetails'
+import WeatherDetails, { SingleWeatherDetailProps, WeatherDetailProps } from './WeatherDetails'
 import Container from './Container'
-import { TbEye, TbDroplet, TbWind, TbSunrise, TbSunset } from "react-icons/tb";
+import WeatherIcon from './WeatherIcon'
+
 interface FutureDayForecastProps extends WeatherDetailProps {
+  day: string; // "Monday"
+  type: string; // "ClearSky"
 }
 
 export default function FutureDayForecast(props: FutureDayForecastProps) {
+  const {
+    day = 'Monday',
+    type = 'ClearSky',
+    visibility = 0,
+    humidity = 0,
+    wind = { speed: 0, deg: 0 },
+    sunrise = 0,
+    sunset = 0
+  } = props;
   return (
-    <Container className="flex w-full h-64 bg-red-100 my-1">
-      <div className='w-fit border border-black'>
-        <p className='text-2xl font-bold'>Day</p>
-        <p className='text-lg'>Date</p>
-      </div>
-      <div className='border border-cyan-600 px-5'>
-        <p className='text-2xl font-bold'>Weather</p>
-        <p className='text-lg'>Description</p>
-      </div>
+    <div className="flex w-full bg-red-100 my-1">
+      {/*(left bit)*/}
+        <Container className='flex flex-col items-center w-1/12 bg-blue-400'>
+        <p className='text-2xl font-bold'>{day}</p>
+        <WeatherIcon icon={type} />
+      </Container>
+      {/*temperature informaton*/}
+      <Container className='flex flex-col items-center w-1/12 bg-green-400'>
+        <p className='text-2xl font-bold'>Temperature</p>
+        <p className='text-2xl font-bold'>10°</p>
+      </Container>
       {/*right bit*/}
-      <section className='flex w-full'>
-        <SingleWeatherDetail
-            info='Visibility'
-            icon={<TbEye />}
-            value={`${props.visibility} m`}
-          />
-          <SingleWeatherDetail
-            info='Humidity'
-            icon={<TbDroplet />}
-            value={`${props.humidity} %`}
-          />
-          <SingleWeatherDetail
-            info='Wind'
-            icon={<TbWind />}
-            value={`${props.wind.speed} m/s`}
-          />
-          <SingleWeatherDetail
-            info='Sunrise'
-            icon={<TbSunrise />}
-            value={`${props.sunrise} m`}
-          />
-          <SingleWeatherDetail
-            info='Sunset'
-            icon={<TbSunset />}
-            value={`${props.sunset} m`}
-          />
-      </section>
-    </Container>
-  )
-  
-}
-function SingleWeatherDetail(props: SingleWeatherDetailProps) {
-  return (
-    <div className='flex flex-col justify-between items-center gap-2 w-full h-full bg-gray-200 border border-black'>
-      <p>
-        {props.info}
-      </p>
-      <div className='text-6xl items-center'>
-        {props.icon}
-      </div>
-      <p>
-        {props.value}
-      </p>
+      <Container className='flex overflow-x-auto w-screen flex-col bg-yellow-400'>
+        <WeatherDetails visibility={visibility} humidity={humidity} wind={{speed: wind.speed, deg: 4}} sunrise={sunrise} sunset={sunset} />
+      </Container>
     </div>
   )
 }
