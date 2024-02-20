@@ -86,17 +86,15 @@ export default function Home() {
   const dataForEachDate = uniqueDates?.map((date) => {
     return data?.list.filter((item) => {
       const itemDate = new Date(item.dt_txt).toDateString();
-      const itemTime = new Date(item.dt_txt).toLocaleTimeString();
-      console.log("ItemDate", itemDate);
-      console.log("ItemTime", itemTime);
+      const itemTime = new Date(item.dt_txt).getHours();
       let midday = new Date("12:00:00 PM")
       // only return the data for 12:00:00 PM for each date
-      if (itemDate === date && itemTime === midday.toLocaleTimeString()) {
+      if (itemDate === date && itemTime === 12) {
         return item;
       }
     });
   });
-  console.log(dataForEachDate);
+  console.log('Date ForDate', dataForEachDate);
 
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   let currentDate = '';
