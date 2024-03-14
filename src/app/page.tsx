@@ -88,12 +88,12 @@ export default function Home() {
       const itemDate = new Date(item.dt_txt).toDateString();
       const itemTime = new Date(item.dt_txt).getHours();
       let midday = new Date("12:00:00 PM")
-      // only return the data for 12:00:00 PM for each date
-      if (itemDate === date && itemTime === 12) {
+      if (itemDate === date) {
         return item;
       }
     });
   });
+
   console.log('Date ForDate', dataForEachDate);
 
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -144,7 +144,7 @@ export default function Home() {
                 </div>
               </div>
             </Container>
-            <DayForecast visibility={data?.list[0].visibility ?? 0} humidity={data?.list[0].main.humidity ?? 0} wind={{speed: data?.list[0].wind.speed ?? 0, deg: data?.list[0].wind.deg ?? 0}} sunrise={data?.city.sunrise ?? 0} sunset={data?.city.sunset ?? 0}/>
+            <DayForecast temp={data?.list[0].main.temp ?? 0} visibility={data?.list[0].visibility ?? 0} humidity={data?.list[0].main.humidity ?? 0} wind={{speed: data?.list[0].wind.speed ?? 0, deg: data?.list[0].wind.deg ?? 0}} sunrise={data?.city.sunrise ?? 0} sunset={data?.city.sunset ?? 0}/>
         </section>
         {/*Next 5 days */}
         <section className="bg-green-300">
@@ -153,11 +153,15 @@ export default function Home() {
             <p className="text-4xl font-bold">Day</p>
             <p className="text-2xl">Weather</p>
             </div>
-              <FutureDayForecast />
-              <FutureDayForecast />
-              <FutureDayForecast />
-              <FutureDayForecast />
-              <FutureDayForecast />
+          {dataForEachDate?.map((item, n) => {
+            if (item) {
+              return (
+                console.log('Item', item),
+                <FutureDayForecast key={n} day={item[0].dt_txt} type={item[0].weather[0].main} visibility={item[0].visibility} humidity={item[0].main.humidity} wind={{speed: item[0].wind.speed, deg: item[0].wind.deg}} sunrise={data?.city.sunrise ?? 0} sunset={data?.city.sunset ?? 0}/>
+              );
+            }
+            return null;
+          })}
         </section>
         </main>
     </div>
