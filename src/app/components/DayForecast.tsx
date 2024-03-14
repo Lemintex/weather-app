@@ -1,13 +1,26 @@
 import React from 'react'
 import Container from './Container'
 import WeatherDetails, { WeatherDetailProps } from './WeatherDetails';
+import { convertKelvinToCelsius } from '../utils/convertUnits';
 
-export default function DayForecast(props: WeatherDetailProps) {
+interface CurrentDayForecastProps extends WeatherDetailProps {
+  temp: number;
+}
+
+export default function DayForecast(props: CurrentDayForecastProps) {
+  const {
+    visibility = 0,
+    humidity = 0,
+    wind = { speed: 0, deg: 0 },
+    sunrise = 0,
+    sunset = 0
+  } = props;
+  let temp = convertKelvinToCelsius(props.temp);
   return (
   <div className='flex gap-4'>
     {/* Sky */}
-    <Container className='w-fit justify-center px-4 flex-col bg-blue-400'>
-      <p className='text-4xl font-bold'>Sky</p>
+    <Container className='w-fit justify-center px-4 flex-nowrap bg-blue-400'>
+      <p className='text-3xl text-nowrap font-bold'>{temp} C</p>
       <p className='text-2xl'>Clouds</p>
     </Container>
     {/* Weather */}
