@@ -3,20 +3,20 @@ import { cn } from '../utils/cn';
 
 type Props = {
   className?: string;
-  value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSubmit?: (e: React.FormEvent) => void;
+  value: string;
+  onChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
+  onSubmit: React.FormEventHandler<HTMLFormElement> | undefined;
 }
 
 export default function SearchBox(props: Props) {
   return (
     <form 
-    
-    className={cn("flex justify-center items-center", props.className)}>
+      onSubmit={props.onSubmit}
+      className={cn("flex justify-center items-center", props.className)}>
         <input
             type="text"
             value={props.value}
-            onSubmit={props.onSubmit}
+            onChange={props.onChange}
             placeholder="Search for a city"
             className="border-2 border-gray-300 p-2 rounded-l-md"
         />
