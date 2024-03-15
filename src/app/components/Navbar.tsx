@@ -15,13 +15,13 @@ export default function Navbar({}: Props) {
 
   const API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
 
-  async function handleInputChange(city: string) {
-    console.log(city);
+  async function handleInputChange(value: string) {
+    console.log(value);
     setCity(city);
     if (city.length > 2) {
       try {
         const response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/find?q=${city}&appid=${API_KEY}`
+          `https://api.openweathermap.org/data/2.5/find?q=${value}&appid=${API_KEY}`
         );
 
         console.log(response.data);
