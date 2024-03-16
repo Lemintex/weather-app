@@ -4,21 +4,22 @@ import axios from 'axios';
 import { MdOutlineLocationOn, MdWbSunny } from 'react-icons/md'
 import SearchBox from './SearchBox';
 
-type Props = {}
+type Props = {
+  city: string;
+  setCity: (city: string) => void;
+}
 
-export default function Navbar({}: Props) {
-  const [city, setCity] = useState<string>("");
+export default function Navbar(props: Props) {
   const [error, setError] = useState<string>("");
   
   const [suggestions, setSuggestions] = useState<string[]>([])
-  const [showSuggestions, setShowSuggestions] = useState<boolean>(true);
+  const [showSuggestions, setShowSuggestions] = useState<boolean>();
 
   const API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
 
   async function handleInputChange(value: string) {
-    console.log(value);
-    setCity(city);
-    if (city.length > 2) {
+    props.setCity(value);
+    if (props.city.length > 2) {
       try {
         const response = await axios.get(
           `https://api.openweathermap.org/data/2.5/find?q=${value}&appid=${API_KEY}`
@@ -47,13 +48,12 @@ export default function Navbar({}: Props) {
   }
 
   function handleSuggestionClick(item: string) {
-    setCity(item);
+    props.setCity(item);
     setShowSuggestions(false);
   }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(city);
   }
 
   return (
@@ -68,10 +68,10 @@ export default function Navbar({}: Props) {
           </div>
           <div className='flex mr-4 gap-2'>
             <MdOutlineLocationOn className='text-3xl'/>
-            <p className='text-lg'>TEST Glasgow</p>
+            <p className='text-lg'>{props.city}</p>
             <div className="relative">
               <SearchBox
-              value={city}
+              value={props.city}
               onSubmit={handleSubmit}
               onChange={(e) => handleInputChange(e.target.value)}
               />
@@ -100,7 +100,7 @@ function SuggestionBox({
   error,
 }: {
   suggestions: string[];
-  showSuggestions: boolean;
+  showSuggestions: boolean | undefined;
   handleSuggestionClick: (item: string) => void;
   error: string;
 }) {

@@ -8,6 +8,7 @@ import { convertKelvinToCelsius } from "./utils/convertUnits";
 import DayForecast from "./components/DayForecast";
 import FutureDayForecast from "./components/FutureDayForecast";
 import { log } from "console";
+import { useState } from "react";
 
 type WeatherInfo = {
   cod: string;
@@ -115,9 +116,24 @@ export default function Home() {
 //     </p>
 //   </div>
 //  );
+
+  const [city, setCity] = useState<string>("");
+  function handleInputChange(value: string) {
+    setCity(value);
+  }
+
+  if (isError) {
+    return (
+      <div className="flex items-center min-h-screen justify-center text-4xl">
+        <p>
+          An error occurred
+        </p>
+      </div>
+    );
+  }
   return (
     <div className="flex flex-col gap-4 min-h-screen">
-      <Navbar />
+      <Navbar city={city.toString()} setCity={handleInputChange}/>
       <main className=" max-w-full mx-auto flex flex-col gap-9 px-4 pb-10 pt-4 bg-gray-100">
         {/* Today */}
         <section>
